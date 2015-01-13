@@ -26,7 +26,7 @@ ENV PATH /home/worker/.rbenv/bin:$PATH
 ENV CONFIGURE_OPTS --disable-install-doc
 RUN echo 'eval "$(rbenv init -)"' >> /home/worker/.bashrc && echo 'gem: --no-rdoc --no-ri' >> /home/worker/.gemrc
 
-RUN rbenv install 1.9.3-p551
+RUN rbenv install 2.0.0-p598
 
 
 #################################
