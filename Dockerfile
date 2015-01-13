@@ -26,8 +26,12 @@ ENV PATH /home/worker/.rbenv/bin:$PATH
 ENV CONFIGURE_OPTS --disable-install-doc
 RUN echo 'eval "$(rbenv init -)"' >> /home/worker/.bashrc && echo 'gem: --no-rdoc --no-ri' >> /home/worker/.gemrc
 
-RUN rbenv install 1.9.3-p551
-RUN rbenv global 1.9.3-p551
+ENV RUBY_VERSION 1.9.3-p551
+
+RUN rbenv install $RUBY_VERSION && \
+    rbenv global $RUBY_VERSION
+    gem install bundler && \
+    rbenv rehash
 
 #################################
 # default behavior is to login by worker user
