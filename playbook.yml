@@ -41,6 +41,15 @@
         - tcl
         - tcl-devel
 
+    - name: autoconf最新バージョンにアップデート
+      command: |
+        wget http://ftp.gnu.org/gnu/autoconf/autoconf-2.69.tar.gz && \
+        tar xvfvz autoconf-2.69.tar.gz && \
+        cd autoconf-2.69 && \
+        ./configure && \
+        make && \
+        make install
+        
     - name: Workerグループの作成
       group: name=worker gid=45678
     - name: Workerユーザーの作成
