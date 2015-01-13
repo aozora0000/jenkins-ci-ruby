@@ -1,7 +1,8 @@
-FROM aozora0000/jenkins-ci-base
+FROM centos:centos6
 MAINTAINER Kohei Kinoshita <aozora0000@gmail.com>
 
-RUN chmod 777 /home/worker/.bashrc
+RUN rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm && rpm -ivh http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
+RUN yum -y update && yum -y install ansible && yum -y update gmp
 
 # ansible provisioning
 ADD ./playbook.yml /tmp/ansible/
