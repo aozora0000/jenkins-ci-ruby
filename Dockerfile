@@ -1,6 +1,8 @@
 FROM centos:centos6
 MAINTAINER Kohei Kinoshita <aozora0000@gmail.com>
 
+RUN yum -y install yum-plugin-fastestmirror
+RUN echo "include_only=.jp" >>  /etc/yum/pluginconf.d/fastestmirror.conf
 RUN rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm && rpm -ivh http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
 RUN yum -y update && yum -y install ansible && yum -y update gmp
 
@@ -14,12 +16,15 @@ USER worker
 ENV HOME /home/worker
 WORKDIR /home/worker
 
-RUN curl -sSL https://rvm.io/mpapis.asc | gpg2 --import - && curl -L get.rvm.io | bash -s stable
-RUN echo 'source "/home/worker/.rvm/scripts/rvm"' > /home/worker/.bashrc
+# rbenv
+RUN git clone https://github.com/sstephenson/rbenv.git /root/.rbenv && \
+    git clone https://github.com/sstephenson/ruby-build.git /root/.rbenv/plugins/ruby-build && \
+    /home/worker/.rbenv/plugins/ruby-build/install.sh
+ENV PATH /home/worker/.rbenv/bin:$PATH
+ENV CONFIGURE_OPTS --disable-install-doc
+RUN echo 'eval "$(rbenv init -)"' >> /home/worker/.bashrc && echo 'gem: --no-rdoc --no-ri' >> /home/worker/.gemrc
 
-RUN source /home/worker/.bashrc && \
-    rvm list known
-
+RUN rbenv install --list
 
 
 #################################
