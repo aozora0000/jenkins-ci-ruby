@@ -31,6 +31,8 @@ RUN rbenv install 1.9.3-p551 && \
     gem install bundler && \
     rbenv rehash
 
+RUN ruby -v
+
 #################################
 # default behavior is to login by worker user
 #################################
