@@ -26,10 +26,8 @@ ENV PATH /home/worker/.rbenv/bin:$PATH
 ENV CONFIGURE_OPTS --disable-install-doc
 RUN echo 'eval "$(rbenv init -)"' >> /home/worker/.bashrc && echo 'gem: --no-rdoc --no-ri' >> /home/worker/.gemrc
 
-ENV RUBY_VERSION 2.1.5
-
-RUN rbenv install $RUBY_VERSION && \
-    rbenv global $RUBY_VERSION && \
+RUN rbenv install 2.1.5 && \
+    rbenv global 2.1.5 && \
     gem install bundler && \
     rbenv rehash
 
