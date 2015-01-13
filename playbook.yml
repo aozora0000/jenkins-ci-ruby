@@ -33,6 +33,7 @@
         - traceroute
         - curl
         - wget
+        - libffi-devel
 
     - name: Workerグループの作成
       group: name=worker gid=45678
