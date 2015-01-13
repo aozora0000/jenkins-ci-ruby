@@ -29,7 +29,7 @@ RUN echo 'eval "$(rbenv init -)"' >> /home/worker/.bashrc && echo 'gem: --no-rdo
 ENV RUBY_VERSION 1.9.3-p551
 
 RUN rbenv install $RUBY_VERSION && \
-    rbenv global $RUBY_VERSION
+    rbenv global $RUBY_VERSION && \
     gem install bundler && \
     rbenv rehash
 
