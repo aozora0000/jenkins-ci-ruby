@@ -11,20 +11,22 @@ ADD ./playbook.yml /tmp/ansible/
 WORKDIR /tmp/ansible
 RUN ansible-playbook playbook.yml
 
+RUN chmod 777 /usr/local/share && chmod 777 /usr/local/bin
+
 # ENV
 USER worker
 ENV HOME /home/worker
 WORKDIR /home/worker
 
 # rbenv
-RUN git clone https://github.com/sstephenson/rbenv.git /root/.rbenv && \
-    git clone https://github.com/sstephenson/ruby-build.git /root/.rbenv/plugins/ruby-build && \
+RUN git clone https://github.com/sstephenson/rbenv.git /home/worker/.rbenv && \
+    git clone https://github.com/sstephenson/ruby-build.git /home/worker/.rbenv/plugins/ruby-build && \
     /home/worker/.rbenv/plugins/ruby-build/install.sh
 ENV PATH /home/worker/.rbenv/bin:$PATH
 ENV CONFIGURE_OPTS --disable-install-doc
 RUN echo 'eval "$(rbenv init -)"' >> /home/worker/.bashrc && echo 'gem: --no-rdoc --no-ri' >> /home/worker/.gemrc
 
-RUN rbenv install --list
+RUN rbenv install 1.8.7-p375
 
 
 #################################
