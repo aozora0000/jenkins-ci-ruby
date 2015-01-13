@@ -26,10 +26,8 @@ ENV PATH /home/worker/.rbenv/bin:$PATH
 ENV CONFIGURE_OPTS --disable-install-doc
 RUN echo 'eval "$(rbenv init -)"' >> /home/worker/.bashrc && echo 'gem: --no-rdoc --no-ri' >> /home/worker/.gemrc
 
-ENV RUBY_VERSION 1.9.3-p551
-
-RUN rbenv install $RUBY_VERSION && \
-    rbenv global $RUBY_VERSION && \
+RUN rbenv install 1.9.3-p551 && \
+    rbenv global 1.9.3-p551 && \
     gem install bundler && \
     rbenv rehash
 
