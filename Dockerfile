@@ -15,7 +15,7 @@ ENV HOME /home/worker
 WORKDIR /home/worker
 
 RUN curl -sSL https://rvm.io/mpapis.asc | gpg2 --import - && curl -L get.rvm.io | bash -s stable
-RUN echo 'source "/home/worker/.rvm/scripts/rvm"' > /home/worker/.bashrc && /home/worker/.bashrc
+RUN echo 'source "/home/worker/.rvm/scripts/rvm"' > /home/worker/.bashrc && source /home/worker/.bashrc
 
 RUN  rvm list known
 
