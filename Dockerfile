@@ -28,7 +28,8 @@ RUN echo 'export PATH="/home/worker/.rbenv/bin:$PATH"' >> /home/worker/.bashrc &
     echo 'eval "$(rbenv init -)"' >> /home/worker/.bashrc && \
     echo 'gem: --no-rdoc --no-ri' >> /home/worker/.gemrc
 
-RUN rbenv install 2.0.0-p598 && \
+RUN source /home/worker/.bashrc && \
+    rbenv install 2.0.0-p598 && \
     rbenv global 2.0.0-p598 && \
     gem install bundler && \
     rbenv rehash
