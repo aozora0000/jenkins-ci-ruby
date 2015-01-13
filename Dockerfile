@@ -24,7 +24,9 @@ RUN git clone https://github.com/sstephenson/rbenv.git /home/worker/.rbenv && \
     /home/worker/.rbenv/plugins/ruby-build/install.sh
 ENV PATH /home/worker/.rbenv/bin:$PATH
 ENV CONFIGURE_OPTS --disable-install-doc
-RUN echo 'eval "$(rbenv init -)"' >> /home/worker/.bashrc && echo 'gem: --no-rdoc --no-ri' >> /home/worker/.gemrc
+RUN echo 'export PATH="/home/worker/.rbenv/bin:$PATH"' >> /home/worker/.bashrc && \
+    echo 'eval "$(rbenv init -)"' >> /home/worker/.bashrc && \
+    echo 'gem: --no-rdoc --no-ri' >> /home/worker/.gemrc
 
 RUN rbenv install 2.2.0 && \
     rbenv global 2.2.0 && \
