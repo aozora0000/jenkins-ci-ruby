@@ -31,6 +31,8 @@ RUN rbenv install 2.0.0-p598 && \
     gem install bundler && \
     rbenv rehash
 
+RUN ruby -v
+
 #################################
 # default behavior is to login by worker user
 #################################
