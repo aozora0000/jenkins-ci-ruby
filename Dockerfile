@@ -32,7 +32,7 @@ RUN source /home/worker/.bashrc && \
     rbenv install 2.1.5 && \
     rbenv global 2.1.5 && \
     gem install bundler && \
-    rbenv rehash
+    rbenv rehash &&\
     ruby -v
 
 #################################
