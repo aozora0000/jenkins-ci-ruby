@@ -33,8 +33,7 @@ RUN source /home/worker/.bashrc && \
     rbenv global 2.2.0 && \
     gem install bundler && \
     rbenv rehash
-
-RUN ruby -v
+    ruby -v
 
 #################################
 # default behavior is to login by worker user
