@@ -27,7 +27,7 @@ ENV CONFIGURE_OPTS --disable-install-doc
 RUN echo 'eval "$(rbenv init -)"' >> /home/worker/.bashrc && echo 'gem: --no-rdoc --no-ri' >> /home/worker/.gemrc
 
 RUN rbenv install 2.2.0
-
+RUN rbenv global 2.2.0
 
 #################################
 # default behavior is to login by worker user

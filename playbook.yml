@@ -34,7 +34,13 @@
         - curl
         - wget
         - libffi-devel
-        
+        - zlib-devel
+        - gdbm-devel
+        - tk
+        - tk-devel
+        - tcl
+        - tcl-devel
+
     - name: Workerグループの作成
       group: name=worker gid=45678
     - name: Workerユーザーの作成
